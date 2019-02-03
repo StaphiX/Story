@@ -8,7 +8,8 @@ using UnityExtentions;
 
 public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private Guid storyID;
+    StoryData storyData;
+
     private int iPressTime = 0;
 
     public UnityEvent onClick;
@@ -27,13 +28,6 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         iPressTime = Time.frameCount;
         Debug.Log("Tile Pressed");
-
-        return;
-
-        RectTransformData rectData = new RectTransformData(GetComponent<RectTransform>());
-        rectData.anchoredPosition.y -= rectData.sizeDelta.y;
-
-        Main.UIManager.InstantiateUI("UI/StoryTile", rectData, transform.parent);
     }
 
     public void OnPointerUp(PointerEventData eventData)

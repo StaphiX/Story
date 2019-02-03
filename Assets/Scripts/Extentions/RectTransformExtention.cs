@@ -28,30 +28,42 @@ namespace UnityExtentions
         StretchAll
     }
 
-    public class RectTransformData
+    public static class RectTransformExtention
     {
-        public RectTransformData(RectTransform trans)
+        public static void Set(this RectTransform thisTrans, float x, float y, AnchorPreset anchor)
         {
-            anchoredPosition = trans.anchoredPosition;
-            anchorMin = trans.anchorMin;
-            anchorMax = trans.anchorMax;
-            sizeDelta = trans.sizeDelta;
+            thisTrans.anchoredPosition = new Vector2(x, y);
+            GetAnchor(anchor, out Vector2 anchorMin, out Vector2 anchorMax);
+            SetAnchor(thisTrans, anchorMin, anchorMax);
         }
 
-        public RectTransformData(Vector2 position, AnchorPreset anchor)
+        public static void Set(this RectTransform thisTrans, float anchorX, float anchorY, float offsetX, float offsetY, AnchorPreset anchor)
         {
-            anchoredPosition = position;
-            GetAnchor(anchor, out anchorMin, out anchorMax);
+            thisTrans.anchoredPosition = new Vector2(anchorX, anchorY);
+            thisTrans.offsetMin = new Vector2(offsetX, offsetY);
+            thisTrans.offsetMax = new Vector2(offsetX, offsetY);
+            GetAnchor(anchor, out Vector2 anchorMin, out Vector2 anchorMax);
+            SetAnchor(thisTrans, anchorMin, anchorMax);
         }
 
-        public Vector2 anchoredPosition = Vector2.zero;
-        public Vector2 sizeDelta = new Vector2(100, 100);
-        public Vector2 anchorMin = new Vector2(0.5f, 0.5f);
-        public Vector2 anchorMax = new Vector2(0.5f, 0.5f);
-
-        public static implicit operator RectTransformData(RectTransform trans)
+        public static void Set(this RectTransform thisTrans, RectTransform trans)
         {
-            return new RectTransformData(trans);
+            thisTrans.anchorMax = trans.anchorMax;
+            thisTrans.anchorMin = trans.anchorMin;
+            thisTrans.anchoredPosition = trans.anchoredPosition;
+            thisTrans.sizeDelta = trans.sizeDelta;
+        }
+
+        public static void SetAnchor(this RectTransform thisTrans, RectTransform trans)
+        {
+            thisTrans.anchorMin = trans.anchorMin;
+            thisTrans.anchorMax = trans.anchorMax;
+        }
+
+        public static void SetAnchor(this RectTransform thisTrans, Vector2 anchorMin, Vector2 anchorMax)
+        {
+            thisTrans.anchorMin = anchorMin;
+            thisTrans.anchorMax = anchorMax;
         }
 
         public static void GetAnchor(AnchorPreset anchorPreset, out Vector2 anchorMin, out Vector2 anchorMax)
@@ -130,43 +142,6 @@ namespace UnityExtentions
                 anchorMin.x = 0.0f;
                 anchorMax.x = 1.0f;
             }
-        }
-    }
-
-    public static class RectTransformExtention
-    {
-        public static void Set(this RectTransform thisTrans, RectTransformData transData)
-        {
-            thisTrans.SetAnchor(transData.anchorMin, transData.anchorMax);
-            thisTrans.anchoredPosition = transData.anchoredPosition;
-            thisTrans.sizeDelta = transData.sizeDelta;
-        }
-
-        public static void Set(this RectTransform thisTrans, RectTransform trans)
-        {
-            thisTrans.anchorMax = trans.anchorMax;
-            thisTrans.anchorMin = trans.anchorMin;
-            thisTrans.anchoredPosition = trans.anchoredPosition;
-            thisTrans.sizeDelta = trans.sizeDelta;
-        }
-
-        public static void SetAnchor(this RectTransform thisTrans, RectTransform trans)
-        {
-            thisTrans.anchorMin = trans.anchorMin;
-            thisTrans.anchorMax = trans.anchorMax;
-        }
-
-        public static void SetAnchor(this RectTransform thisTrans, Vector2 anchorMin, Vector2 anchorMax)
-        {
-            thisTrans.anchorMin = anchorMin;
-            thisTrans.anchorMax = anchorMax;
-        }
-
-        public static RectTransformData FromPosition(float x, float y, AnchorPreset anchor)
-        {
-            RectTransformData rectTransform = new RectTransformData(new Vector2(x, y), anchor);
-
-            return rectTransform;
         }
     }
 }

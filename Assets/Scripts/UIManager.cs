@@ -45,7 +45,7 @@ public class UIManager
         screenManager.Init();
     }
 
-    public GameObject InstantiateUI(string prefabName, RectTransformData rectTransformData, Transform parent = null)
+    public RectTransform InstantiateUI(string prefabName, Transform parent = null)
     {
         GameObject prefab = Resources.Load<GameObject>(prefabName);
         GameObject UIObject = GameObject.Instantiate(prefab);
@@ -58,9 +58,6 @@ public class UIManager
         else
             Debug.Log("Missing Canvas");
 
-        RectTransform rectTrasform = UIObject.GetComponent<RectTransform>();
-        rectTrasform.Set(rectTransformData);
-
-        return UIObject;
+        return UIObject.GetComponent<RectTransform>();
     }
 }

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    public static StoryDataManager storyDataManager = new StoryDataManager();
     public static UIManager UIManager = new UIManager();
 
     private void Awake()
     {
+        storyDataManager.Init();
         UIManager.Init();
     }
 

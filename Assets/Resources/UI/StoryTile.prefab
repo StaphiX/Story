@@ -91,23 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0af2a53ef9c2344a81aa0ed6421fa02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openStoryEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 317647857866099365, guid: 121d559807044a6499f2e3b1ba17b3df,
-          type: 3}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: OpenStoryEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   onClick:
     m_PersistentCalls:
       m_Calls: []
