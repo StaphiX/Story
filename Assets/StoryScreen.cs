@@ -77,6 +77,10 @@ public class StoryScreen : BaseScreen
 
         RectTransform tileTransfrom = Main.UIManager.InstantiateUI("UI/StoryTile", content);
         tileTransfrom.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 50, tileTransfrom.sizeDelta.y);
+
+        StoryTile storyTile = tileTransfrom.GetComponent<StoryTile>();
+        if (storyTile != null)
+            storyTile.SetStoryData(Main.storyDataManager.NewStory());
     }
 
     public void AddStoryTile(StoryData data)
@@ -87,6 +91,10 @@ public class StoryScreen : BaseScreen
 
         RectTransform tileTransfrom = Main.UIManager.InstantiateUI("UI/StoryTile", content);
         tileTransfrom.anchoredPosition = new Vector2(0, contentY);
+
+        StoryTile storyTile = tileTransfrom.GetComponent<StoryTile>();
+        if (storyTile != null)
+            storyTile.SetStoryData(data);
     }
 
     public void StorySelected(StoryTile storyTile)
@@ -108,7 +116,7 @@ public class StoryScreen : BaseScreen
                 break;
         }  
 
-        Debug.Log("StorySelected: " + storyTile.ToStringValues());
+        Debug.Log("StorySelected: " + storyTile.GetStoryData().ToStringValues());
     }
 
     public void SetState(EStoryScreenState eState)

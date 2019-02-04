@@ -31,13 +31,15 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 498d65c3bc3c9d545bf5f72740876b47, type: 3}
-    totalSpriteSurfaceArea: 20000
+    totalSpriteSurfaceArea: 30000
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e3bbe8c63b911c241a3ba6fdcd843abe, type: 3}
   - {fileID: 21300000, guid: 6f3fa957c5f93a848b3a50743665d79b, type: 3}
   - {fileID: 21300000, guid: 6660e46b64e0fe645893fd7654eb478e, type: 3}
   m_PackedSpriteNamesToIndex:
+  - icon_default
   - icon_mountain
   - icon_ribbon
   m_Tag: UIAtlas

@@ -21,6 +21,14 @@ public class StoryDataManager
         LoadFromDisk();
     }
 
+    public StoryData NewStory()
+    {
+        StoryData data = new StoryData();
+        storyData.BinaryInsert(data, storyComparer);
+
+        return data;
+    }
+
     public void LoadFromDisk()
     {
         if(!Directory.Exists(storyMasterFile))

@@ -16,8 +16,8 @@ public class StoryData : IComparable<Guid>
     public StoryData()
     {
         guid = Guid.NewGuid();
-        title = "StoryTitle";
-        icon = "iconStory";
+        title = "Story Title";
+        icon = "icon_default";
         description = "This is a description of the story as a whole";
     }
 

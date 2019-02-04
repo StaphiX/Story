@@ -7,6 +7,7 @@ using UnityExtentions;
 
 public class UIManager
 {
+    SpriteManager spriteManager = new SpriteManager();
     ScreenManager screenManager = new ScreenManager();
     Canvas UICanvas = null;
     Vector2 UIReferenceRes = new Vector2(2732, 2048);
@@ -42,6 +43,7 @@ public class UIManager
         CanvasScaler scaler = UICanvas.GetComponent<CanvasScaler>();
         UIReferenceRes = scaler.referenceResolution;
 
+        spriteManager.Init();
         screenManager.Init();
     }
 
@@ -59,5 +61,10 @@ public class UIManager
             Debug.Log("Missing Canvas");
 
         return UIObject.GetComponent<RectTransform>();
+    }
+
+    public Sprite LoadSprite(string imageName)
+    {
+        return spriteManager.LoadSprite(imageName);
     }
 }
