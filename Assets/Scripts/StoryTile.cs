@@ -58,10 +58,16 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             descText.text = storyData.description;
         }
+
+        SetIcon(storyData.icon);
+    }
+
+    public void SetIcon(string icon)
+    {
         if (iconImage != null)
         {
-            Sprite sprite = Main.UIManager.LoadSprite(storyData.icon);
-            if(sprite != null)
+            Sprite sprite = Main.UIManager.LoadSprite(icon);
+            if (sprite != null)
             {
                 iconImage.sprite = sprite;
             }

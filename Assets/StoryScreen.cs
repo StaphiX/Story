@@ -13,10 +13,12 @@ public enum EStoryScreenState
 }
 
 [System.Serializable] public class StorySelectedEvent : UnityEvent<StoryTile> { }
+[System.Serializable] public class StoryIconSelectedEvent : UnityEvent<string> { }
 
 public class StoryScreen : BaseScreen
 {
     public static StorySelectedEvent storySelectedEvent = new StorySelectedEvent();
+    public static StoryIconSelectedEvent storyIconSelectedEvent = new StoryIconSelectedEvent();
 
     EStoryScreenState eState = EStoryScreenState.EShowAll;
 
@@ -27,12 +29,14 @@ public class StoryScreen : BaseScreen
     {
         base.AddEvents();
         storySelectedEvent.AddListener(StorySelected);
+        storyIconSelectedEvent.AddListener(StoryIconSelected);
     }
 
     protected override void RemoveEvents()
     {
         base.RemoveEvents();
         storySelectedEvent.RemoveListener(StorySelected);
+        storyIconSelectedEvent.RemoveListener(StoryIconSelected);
     }
 
     private void Awake()
@@ -117,6 +121,14 @@ public class StoryScreen : BaseScreen
         }  
 
         Debug.Log("StorySelected: " + storyTile.GetStoryData().ToStringValues());
+    }
+
+    public void StoryIconSelected(string imageName)
+    {
+        if (eState != EStoryScreenState.EStoryOpen || selectedStory == null)
+            return;
+
+        selectedStory.SetIcon(imageName);
     }
 
     public void SetState(EStoryScreenState eState)

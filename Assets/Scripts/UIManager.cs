@@ -63,6 +63,15 @@ public class UIManager
         return UIObject.GetComponent<RectTransform>();
     }
 
+    public RectTransform InstantiateImage(string imageName, Transform parent = null)
+    {
+        RectTransform rectTransform = InstantiateUI("UI/Image", parent);
+        Image image = rectTransform.GetComponent<Image>();
+        image.sprite = LoadSprite(imageName);
+
+        return rectTransform;
+    }
+
     public Sprite LoadSprite(string imageName)
     {
         return spriteManager.LoadSprite(imageName);
