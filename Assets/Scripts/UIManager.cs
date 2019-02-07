@@ -9,6 +9,8 @@ public class UIManager
 {
     SpriteManager spriteManager = new SpriteManager();
     ScreenManager screenManager = new ScreenManager();
+    ModalManager modalManager = new ModalManager();
+
     Canvas UICanvas = null;
     Vector2 UIReferenceRes = new Vector2(2732, 2048);
 
@@ -45,11 +47,18 @@ public class UIManager
 
         spriteManager.Init();
         screenManager.Init();
+        modalManager.Init();
     }
 
     public RectTransform InstantiateUI(string prefabName, Transform parent = null)
     {
         GameObject prefab = Resources.Load<GameObject>(prefabName);
+        if (prefab == null)
+        {
+            Debug.Log("Prefab not found - check prefab name");
+            return null;
+        }
+
         GameObject UIObject = GameObject.Instantiate(prefab);
         UIObject.name = prefab.name;
 
@@ -75,5 +84,15 @@ public class UIManager
     public Sprite LoadSprite(string imageName)
     {
         return spriteManager.LoadSprite(imageName);
+    }
+
+    public RectTransform InstantiateScreen(string prefabName)
+    {
+        return screenManager.InstantiateScreen(prefabName);
+    }
+
+    public RectTransform OpenModal(string modal)
+    {
+        return modalManager.OpenModal(modal);
     }
 }

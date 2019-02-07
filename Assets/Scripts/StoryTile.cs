@@ -8,6 +8,8 @@ using UnityExtentions;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable] public class StorySelectedEvent : UnityEvent<StoryTile> { }
+
 public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     StoryData storyData;
@@ -17,14 +19,17 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     TextMeshProUGUI titleText;
     TextMeshProUGUI descText;
-    Image iconImage;
+    ImageButton iconButton;
 
+    public StorySelectedEvent onSelected = new StorySelectedEvent();
 
     private void Awake()
     {
         titleText = transform.Find("Title").GetComponent<TextMeshProUGUI>();
         descText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
-        iconImage = transform.Find("Icon").GetComponent<Image>();
+        iconButton = transform.Find("Icon").GetComponent<ImageButton>();
+
+        iconButton.onSelected.AddListener(EditIcon);
     }
 
     //void SetTile();
@@ -44,7 +49,10 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Debug.Log("Tile Released: " + iHoldTime.ToString());
         iPressTime = 0;
 
-        StoryScreen.storySelectedEvent.Invoke(this);
+        onSelected.Invoke(this);
+
+        RectTransform modelTransform = Main.UIManager.OpenModal("IconModal");
+        IconModal iconModel = modelTransform.GetComponent<IconModal>();
     }
 
     public void SetStoryData(StoryData data)
@@ -62,15 +70,23 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         SetIcon(storyData.icon);
     }
 
+    public void EditIcon(ImageButton imageButton)
+    {
+        RectTransform modalTransfrom = Main.UIManager.OpenModal("IconModal");
+        IconModal iconModal = modalTransfrom.GetComponent<IconModal>();
+        iconModal.Set(IconSelected);
+    }
+
+    public void IconSelected(ImageButton imageButton)
+    {
+        SetIcon(imageButton.GetSprite());
+    }
+
     public void SetIcon(string icon)
     {
-        if (iconImage != null)
+        if (iconButton != null)
         {
-            Sprite sprite = Main.UIManager.LoadSprite(icon);
-            if (sprite != null)
-            {
-                iconImage.sprite = sprite;
-            }
+            iconButton.SetSprite(icon);
         }
     }
 

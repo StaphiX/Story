@@ -12,35 +12,17 @@ public enum EStoryScreenState
     EPlotOpen
 }
 
-[System.Serializable] public class StorySelectedEvent : UnityEvent<StoryTile> { }
-[System.Serializable] public class StoryIconSelectedEvent : UnityEvent<string> { }
-
 public class StoryScreen : BaseScreen
 {
-    public static StorySelectedEvent storySelectedEvent = new StorySelectedEvent();
-    public static StoryIconSelectedEvent storyIconSelectedEvent = new StoryIconSelectedEvent();
-
     EStoryScreenState eState = EStoryScreenState.EShowAll;
 
     ScrollRect scrollView = null;
     StoryTile selectedStory = null;
 
-    protected override void AddEvents()
+    protected override void Awake()
     {
-        base.AddEvents();
-        storySelectedEvent.AddListener(StorySelected);
-        storyIconSelectedEvent.AddListener(StoryIconSelected);
-    }
+        base.Awake();
 
-    protected override void RemoveEvents()
-    {
-        base.RemoveEvents();
-        storySelectedEvent.RemoveListener(StorySelected);
-        storyIconSelectedEvent.RemoveListener(StoryIconSelected);
-    }
-
-    private void Awake()
-    {
         eState = EStoryScreenState.EShowAll;
 
         scrollView = GetComponentInChildren<ScrollRect>();
@@ -84,7 +66,10 @@ public class StoryScreen : BaseScreen
 
         StoryTile storyTile = tileTransfrom.GetComponent<StoryTile>();
         if (storyTile != null)
+        {
             storyTile.SetStoryData(Main.storyDataManager.NewStory());
+            storyTile.onSelected.AddListener(StorySelected);
+        }
     }
 
     public void AddStoryTile(StoryData data)

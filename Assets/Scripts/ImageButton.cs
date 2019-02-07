@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[System.Serializable] public class ImageButtonSelected : UnityEvent<string> { }
+[System.Serializable] public class ImageButtonSelected : UnityEvent<ImageButton> { }
 
 public class ImageButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -26,11 +26,16 @@ public class ImageButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         Debug.Log("Button Released");
 
-        onSelected.Invoke(image.sprite.name);
+        onSelected.Invoke(this);
     }
 
     public void SetSprite(string imageName)
     {
         image.sprite = Main.UIManager.LoadSprite(imageName);
+    }
+
+    public string GetSprite()
+    {
+        return image.sprite.texture.name;
     }
 }

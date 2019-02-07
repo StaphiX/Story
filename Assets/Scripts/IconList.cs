@@ -12,6 +12,8 @@ public class IconList : MonoBehaviour
 {
     GridLayoutGroup gridGroup;
 
+    public ImageButtonSelected onIconSelected = new ImageButtonSelected();
+
     private void Awake()
     {
         gridGroup = GetComponent<GridLayoutGroup>();
@@ -35,10 +37,11 @@ public class IconList : MonoBehaviour
         imageButton.onSelected.AddListener(IconSelected);
     }
 
-    private void IconSelected(string icon)
+    private void IconSelected(ImageButton imageButton)
     {
+        string icon = imageButton.GetSprite();
         Debug.Log("Selected icon: " + icon);
+
+        onIconSelected.Invoke(imageButton);
     }
-
-
 }

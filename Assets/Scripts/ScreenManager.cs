@@ -19,16 +19,14 @@ public class ScreenManager
         InstantiateScreen("ScreenStoryboard");
     }
 
-    public void InstantiateScreen(string screen)
+    public RectTransform InstantiateScreen(string screen)
     {
         RectTransform screenTransform = Main.UIManager.InstantiateUI("Screens/" + screen, screenManagerGO.transform);
         screenTransform.Set(0, 0, 0, 0, AnchorPreset.StretchAll);
 
-        screenStack.Add(screenTransform.gameObject.GetComponent<BaseScreen>());
-    }
+        BaseScreen baseScreen = screenTransform.gameObject.GetComponent<BaseScreen>();
+        screenStack.Add(baseScreen);
 
-    public void SendMessage<T>(T data)
-    {
-
+        return screenTransform;
     }
 }
