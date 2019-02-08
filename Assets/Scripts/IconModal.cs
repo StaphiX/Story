@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class IconModal : BaseModal
 {
-    IconList iconList;
+    IconGrid iconGrid;
 
     protected override void Awake()
     {
-        iconList = transform.Find("IconList").GetComponent<IconList>();
+        ScrollRect tScroller = transform.Find("IconList").GetComponent<ScrollRect>();
+        if (tScroller == null)
+            return;
+
+        iconGrid = tScroller.content.Find("IconGrid").GetComponent<IconGrid>();
     }
 
     public void Set(UnityAction<ImageButton> onIconSelected)
     {
-        if (iconList == null)
+        if (iconGrid == null)
             return;
 
-        iconList.onIconSelected.AddListener(onIconSelected);
+        iconGrid.onIconSelected.AddListener(onIconSelected);
     }
 }

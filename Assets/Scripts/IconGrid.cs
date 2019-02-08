@@ -8,7 +8,7 @@ using UnityExtentions;
 using UnityEngine.UI;
 using TMPro;
 
-public class IconList : MonoBehaviour
+public class IconGrid : MonoBehaviour
 {
     GridLayoutGroup gridGroup;
 
@@ -26,6 +26,8 @@ public class IconList : MonoBehaviour
         LoadIcon("icon_default");
         LoadIcon("icon_mountain");
         LoadIcon("icon_ribbon");
+        LoadIcon("icon_feather");
+        LoadIcon("icon_quill");
     }
 
     private void LoadIcon(string imageName)

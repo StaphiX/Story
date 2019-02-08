@@ -32,10 +32,11 @@ public class ImageButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void SetSprite(string imageName)
     {
         image.sprite = Main.UIManager.LoadSprite(imageName);
+        image.sprite.name = imageName;
     }
 
     public string GetSprite()
     {
-        return image.sprite.texture.name;
+        return image.sprite.name;
     }
 }

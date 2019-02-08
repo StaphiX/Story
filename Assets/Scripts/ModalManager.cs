@@ -20,6 +20,7 @@ public class ModalManager
     public RectTransform OpenModal(string modal)
     {
         RectTransform modalTransform = Main.UIManager.InstantiateUI("Modal/" + modal, modalManagerGO.transform);
+        modalTransform.Set(0, 0, 0, 0, AnchorPreset.MiddleCenter);
 
         BaseModal baseModal = modalTransform.GetComponent<BaseModal>();
         modalStack.Add(baseModal);
