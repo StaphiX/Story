@@ -31,20 +31,28 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 498d65c3bc3c9d545bf5f72740876b47, type: 3}
-    totalSpriteSurfaceArea: 50000
+    totalSpriteSurfaceArea: 60000
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ea3b75205fba5be45a46eb3f5a04f627, type: 3}
+  - {fileID: 21300000, guid: 0a96d4608add09042983948e9dc54a73, type: 3}
   - {fileID: 21300000, guid: e3bbe8c63b911c241a3ba6fdcd843abe, type: 3}
   - {fileID: 21300000, guid: 01b269c6f3f8260428ae54310498af80, type: 3}
   - {fileID: 21300000, guid: 6f3fa957c5f93a848b3a50743665d79b, type: 3}
+  - {fileID: 21300000, guid: 14c961671aedd7d40aad378bc01711f9, type: 3}
   - {fileID: 21300000, guid: ffcbc8f85e17f894db75d093fef1940c, type: 3}
   - {fileID: 21300000, guid: 6660e46b64e0fe645893fd7654eb478e, type: 3}
+  - {fileID: 21300000, guid: 5cd6d5eff5756824e89c5e6110cf5ef3, type: 3}
   m_PackedSpriteNamesToIndex:
+  - tick
+  - pencil
   - icon_default
   - icon_feather
   - icon_mountain
+  - cross
   - icon_quill
   - icon_ribbon
+  - plus
   m_Tag: UIAtlas
   m_IsVariant: 0

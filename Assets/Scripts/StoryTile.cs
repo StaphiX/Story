@@ -17,25 +17,27 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private int iPressTime = 0;
     public UnityEvent onClick;
 
-    TextMeshProUGUI titleText;
-    TextMeshProUGUI descText;
+    TMP_InputField titleText;
+    TMP_InputField descText;
     ImageButton iconButton;
+
+    ImageButton editButton;
+
+    bool bCanEdit = false;
+    bool bShowPlot = false;
 
     public StorySelectedEvent onSelected = new StorySelectedEvent();
 
     private void Awake()
     {
-        titleText = transform.Find("Title").GetComponent<TextMeshProUGUI>();
-        descText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
+        titleText = transform.Find("Title").GetComponent<TMP_InputField>();
+        descText = transform.Find("Description").GetComponent<TMP_InputField>();
         iconButton = transform.Find("Icon").GetComponent<ImageButton>();
+        editButton = transform.Find("Edit").GetComponent<ImageButton>();
 
-        iconButton.onSelected.AddListener(EditIcon);
+        editButton.onSelected.AddListener(AllowEdit);
+        iconButton.onSelected.AddListener(IconSelected);
     }
-
-    //void SetTile();
-    //{
-    //    StoryManager.GetStory(storyID);
-    //}
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -60,24 +62,27 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         storyData = data;
         if(titleText != null)
         {
-            titleText.text = storyData.title;
+            titleText.textComponent.SetText(storyData.title);
         }
         if (descText != null)
         {
-            descText.text = storyData.description;
+            descText.textComponent.SetText(storyData.description);
         }
 
         SetIcon(storyData.icon);
     }
 
-    public void EditIcon(ImageButton imageButton)
+    public void IconSelected(ImageButton imageButton)
     {
+        if (!bCanEdit)
+            return;
+
         RectTransform modalTransfrom = Main.UIManager.OpenModal("IconModal");
         IconModal iconModal = modalTransfrom.GetComponent<IconModal>();
-        iconModal.Set(IconSelected);
+        iconModal.Set(IconModalCallback);
     }
 
-    public void IconSelected(ImageButton imageButton)
+    public void IconModalCallback(ImageButton imageButton)
     {
         SetIcon(imageButton.GetSprite());
     }
@@ -88,6 +93,14 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             iconButton.SetSprite(icon);
         }
+    }
+
+    public void AllowEdit(ImageButton imageButton)
+    {
+        bCanEdit = true;
+
+        titleText.interactable = true;
+        descText.interactable = true;
     }
 
     public StoryData GetStoryData()
