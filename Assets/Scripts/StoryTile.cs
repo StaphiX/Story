@@ -22,6 +22,8 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     ImageButton iconButton;
 
     ImageButton editButton;
+    ImageButton crossButton;
+    ImageButton tickButton;
 
     bool bCanEdit = false;
     bool bShowPlot = false;
@@ -34,8 +36,14 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         descText = transform.Find("Description").GetComponent<TMP_InputField>();
         iconButton = transform.Find("Icon").GetComponent<ImageButton>();
         editButton = transform.Find("Edit").GetComponent<ImageButton>();
+        crossButton = transform.Find("Cross").GetComponent<ImageButton>();
+        tickButton = transform.Find("Tick").GetComponent<ImageButton>();
 
-        editButton.onSelected.AddListener(AllowEdit);
+        crossButton = transform.Find("Cross").GetComponent<ImageButton>();
+        tickButton = transform.Find("Tick").GetComponent<ImageButton>();
+        editButton.onSelected.AddListener(EditSelected);
+        crossButton.onSelected.AddListener(CrossSelected);
+        tickButton.onSelected.AddListener(TickSelected);
         iconButton.onSelected.AddListener(IconSelected);
     }
 
@@ -95,12 +103,37 @@ public class StoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    public void AllowEdit(ImageButton imageButton)
+    public void EditSelected(ImageButton imageButton)
     {
-        bCanEdit = true;
+        AllowEdit(true);
 
-        titleText.interactable = true;
-        descText.interactable = true;
+    }
+
+    public void TickSelected(ImageButton imageButton)
+    {
+        FinishEdit(true);
+    }
+
+    public void CrossSelected(ImageButton imageButton)
+    {
+        FinishEdit(false);
+    }
+
+    private void AllowEdit(bool bAllow)
+    {
+        bCanEdit = bAllow;
+
+        titleText.interactable = bAllow;
+        descText.interactable = bAllow;
+
+        tickButton.SetActive(bAllow);
+        crossButton.SetActive(bAllow);
+        editButton.SetActive(!bAllow);
+    }
+
+    private void FinishEdit(bool bKeepChanges)
+    {
+        AllowEdit(false);
     }
 
     public StoryData GetStoryData()
