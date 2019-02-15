@@ -224,8 +224,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 742641524744269761}
   - {fileID: 317647858634915837}
+  - {fileID: 742641524744269761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29121402, g: 0.4051498, b: 0.671, a: 1}
+  m_Color: {r: 0.09411765, g: 0.12941177, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -514,7 +514,7 @@ RectTransform:
   - {fileID: 317647858297767425}
   - {fileID: 317647857465366283}
   m_Father: {fileID: 317647857866099364}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -839,7 +839,7 @@ PrefabInstance:
     - target: {fileID: 3904955058482728908, guid: ad97044d8dc37a74abec7085f3bd02af,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3904955058482728908, guid: ad97044d8dc37a74abec7085f3bd02af,
         type: 3}
@@ -910,6 +910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143767372859348511, guid: ad97044d8dc37a74abec7085f3bd02af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad97044d8dc37a74abec7085f3bd02af, type: 3}

@@ -12,7 +12,7 @@ namespace UnityExtentions
     {
         public static void BinaryInsert<T>(this List<T> list, T item, IComparer<T> comp)
         {
-            int index = list.BinarySearch(item);
+            int index = list.BinarySearch(item, comp);
             if (index < 0)
                 index = ~index;
 

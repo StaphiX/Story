@@ -16,6 +16,7 @@ public class StoryScreen : BaseScreen
 {
     EStoryScreenState eState = EStoryScreenState.EShowAll;
 
+    Footer footer = null;
     ScrollRect scrollView = null;
     StoryTile selectedStory = null;
 
@@ -25,7 +26,9 @@ public class StoryScreen : BaseScreen
 
         eState = EStoryScreenState.EShowAll;
 
+        footer = GetComponentInChildren<Footer>();
         scrollView = GetComponentInChildren<ScrollRect>();
+
         if(scrollView == null)
         {
             Debug.Log("StoryScreen is missing child ScrollRect");
@@ -44,6 +47,8 @@ public class StoryScreen : BaseScreen
                 AddStoryTile(data);
             }
         }
+
+        footer.onAddNewSelected.AddListener(AddNewSelected);
     }
 
     void Start()
@@ -54,6 +59,11 @@ public class StoryScreen : BaseScreen
     void Update()
     {
         
+    }
+
+    void AddNewSelected(ImageButton imageButton)
+    {
+        AddNewStoryTile();
     }
 
     public void AddNewStoryTile()

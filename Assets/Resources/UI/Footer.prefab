@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3904955058482728908}
   - component: {fileID: 7543115436630381268}
   - component: {fileID: 8930501651258505073}
+  - component: {fileID: 7860694135705335115}
   m_Layer: 5
   m_Name: Footer
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
+  m_Color: {r: 0.07058824, g: 0.09019608, b: 0.11764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -75,6 +76,23 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &7860694135705335115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737128312031054931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7896970cdc08f4d84dd65b0327b746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAddNewSelected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ImageButtonSelected, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1001 &3235934438646169482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 6767820061731694997, guid: 03f055d126e77b14ba91fea65111057c,
         type: 3}
       propertyPath: m_Name
-      value: ImageButton
+      value: AddNew
       objectReference: {fileID: 0}
     - target: {fileID: 2610976715381950385, guid: 03f055d126e77b14ba91fea65111057c,
         type: 3}
@@ -192,32 +210,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7765853273162452334, guid: 03f055d126e77b14ba91fea65111057c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2376717295660526751, guid: 03f055d126e77b14ba91fea65111057c,
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2376717295660526751, guid: 03f055d126e77b14ba91fea65111057c,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376717295660526751, guid: 03f055d126e77b14ba91fea65111057c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599366255637522015, guid: 03f055d126e77b14ba91fea65111057c,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5cd6d5eff5756824e89c5e6110cf5ef3,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03f055d126e77b14ba91fea65111057c, type: 3}
 --- !u!224 &636226111803324475 stripped
